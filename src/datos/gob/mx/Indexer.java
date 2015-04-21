@@ -81,6 +81,9 @@ public class Indexer {
 		File[] files = new File(dataDir).listFiles();
 
 		for (File f : files) {
+			if(f.isDirectory()) {
+				index(f.getAbsolutePath(), filter);
+			}
 			if (!f.isDirectory() && !f.isHidden() && f.exists() && f.canRead()
 					&& (filter == null || filter.accept(f))) {
 				indexFile(f);
@@ -97,13 +100,18 @@ public class Indexer {
 	}
 
 	protected Document getDocument(File f) throws Exception {
+		FileInputStream fis = new FileInputStream(f); 
+		InputStreamReader isr = new InputStreamReader(fis,
+				StandardCharsets.UTF_8);
+		BufferedReader br = new BufferedReader(isr);
 		Document doc = new Document();
 		doc.add(new StringField("fullpath", f.getPath(), Field.Store.YES));
-		doc.add(new TextField("contents", new BufferedReader(
-				new InputStreamReader(new FileInputStream(f),
-						StandardCharsets.UTF_8))));
+		doc.add(new TextField("contents", br));
 		doc.add(new StringField("filename", f.getName(), Field.Store.YES));
 		doc.add(new LongField("modified", f.lastModified(), Field.Store.NO));
+		br.close();
+		isr.close();
+		fis.close();
 		return doc;
 	}
 

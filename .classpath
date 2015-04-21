@@ -5,6 +5,6 @@
 	<classpathentry kind="lib" path="/Users/citlalig/Applications/lucene-4.9.0/core/lucene-core-4.9.0.jar"/>
 	<classpathentry kind="lib" path="/Users/citlalig/Applications/lucene-4.9.0/queryparser/lucene-queryparser-4.9.0.jar"/>
 	<classpathentry kind="lib" path="/Users/citlalig/Applications/lucene-4.9.0/analysis/common/lucene-analyzers-common-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/citlalig/Applications/lucene-4.9.0/tika-app-1.7.jar"/>
+	<classpathentry kind="lib" path="/Users/citlalig/Applications/lucene-4.9.0/core/tika-app-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

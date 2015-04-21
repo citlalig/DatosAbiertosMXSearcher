@@ -39,6 +39,8 @@ import org.apache.tika.parser.Parser;
 import org.apache.tika.config.TikaConfig;
 import org.xml.sax.ContentHandler;
 
+import datos.gob.mx.Indexer;
+
 public class TikaIndexer extends Indexer {
 
 	static Set<String> textualMetadataFields = new HashSet<String>();
@@ -83,7 +85,7 @@ public class TikaIndexer extends Indexer {
 
 		InputStream is = new FileInputStream(f);
 		Parser parser = new AutoDetectParser();
-		ContentHandler handler = new BodyContentHandler();
+		ContentHandler handler = new BodyContentHandler(1024*1024*1024);
 		ParseContext context = new ParseContext();
 		context.set(Parser.class, parser);
 
